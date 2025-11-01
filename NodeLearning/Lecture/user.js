@@ -1,5 +1,5 @@
 const http = require("http");
-
+const fs = require("fs");
 /*function requestListener(req, res) {
   console.log(req);
 }
@@ -28,20 +28,20 @@ const server = http.createServer((req, res) => {
     res.write('<input type="radio" id="male" name="gender" value="male" />');
     res.write('<label for="female">Female</label>');
     res.write('<input type="radio" id="female" name="gender" value="male" />');
-    res.write('<br><input type="submit" value="Submit"/>');
+    res.write('<br><input type="submit" value="submit"/>');
 
     res.write("</form>");
 
     res.write("</body>");
     res.write("</html>");
-    return res.end();
-  } else if (req.url === "/products") {
-    res.setHeader("Content-Type", "text/html");
-    res.write("<html>");
-    res.write("<head><title>Complete Coding</title></head>");
-    res.write("<body><h1>Checkout our Products</h1></body>");
-    res.write("</html>");
     return res.end(); // always return res.end(); if you have to fetch another request else it will end at first request
+  } else if (
+    req.url.toLocaleLowerCase() === "/submit-details" &&
+    req.method == "POST"
+  ) {
+    fs.writeFileSync("user.txt", "Mangesh Ghode");
+    res.statusCode = 302;
+    res.setHeader("Location", "/");
   }
   res.setHeader("Content-Type", "text/html");
   res.write("<html>");
