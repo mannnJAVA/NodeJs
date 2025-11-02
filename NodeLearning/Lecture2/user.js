@@ -1,0 +1,68 @@
+const http = require("http");
+const fs = require("fs");
+/*function requestListener(req, res) {
+  console.log(req);
+}
+
+http.createServer(requestListener);*/
+
+const server = http.createServer((req, res) => {
+  console.log(req.url, req.method);
+  //process.exit();
+
+  //res.setHeader("Content-Type", "json"); or we can use single quote ' '
+  if (req.url === "/") {
+    res.setHeader("Content-Type", "text/html");
+    res.write("<html>");
+    res.write("<head><title>Complete Coding</title></head>");
+    res.write("<body><h1>Welcome to Home</h1>");
+
+    res.write('<form action="/submit-details" method="POST">');
+    res.write(
+      '<input type="text" name="username" placeholder="Enter your name"/><br>'
+    );
+    res.write(
+      '<input type="email" name="email" placeholder="Enter your email"/><br>'
+    );
+    res.write('<label for="male">Male</label>');
+    res.write('<input type="radio" id="male" name="gender" value="male" />');
+    res.write('<label for="female">Female</label>');
+    res.write('<input type="radio" id="female" name="gender" value="male" />');
+    res.write('<br><input type="submit" value="submit"/>');
+
+    res.write("</form>");
+
+    res.write("</body>");
+    res.write("</html>");
+    return res.end(); // always return res.end(); if you have to fetch another request else it will end at first request
+  } else if (
+    req.url.toLowerCase() === "/submit-details" &&
+    req.method == "POST"
+  ) {
+    const body = [];
+    req.on("data", (chunk) => {
+      console.log(chunk);
+      body.push(chunk);
+    });
+
+    req.on("end", () => {
+      const fullBody = Buffer.concat(body).toString();
+      console.log(fullBody);
+    });
+
+    fs.writeFileSync("user.txt", "Mangesh Ghode");
+    res.statusCode = 302;
+    res.setHeader("Location", "/");
+  }
+  res.setHeader("Content-Type", "text/html");
+  res.write("<html>");
+  res.write("<head><title>Complete Coding</title></head>");
+  res.write("<body><h1>My Page</h1></body>");
+  res.write("</html>");
+  res.end();
+});
+
+const PORT = 3000;
+server.listen(PORT, () => {
+  console.log(`Server runnig on address http://localhost:${PORT}`);
+});
