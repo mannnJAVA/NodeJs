@@ -3,7 +3,6 @@ const express = require("express"); // external module
 
 const userRouter = require("./routes/userRouter"); //Local module
 const hostRouter = require("./routes/hostRouter");
-
 const rootDir = require("./utils/pathUtils");
 
 const app = express();
@@ -13,7 +12,10 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(express.urlencoded());
+app.use(express.urlencoded({ extended: true }));
+
+app.use(express.static(path.join(rootDir, "public")));
+
 app.use("/user", userRouter);
 app.use("/host", hostRouter);
 
