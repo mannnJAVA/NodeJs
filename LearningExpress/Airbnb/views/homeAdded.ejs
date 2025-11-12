@@ -1,25 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/output.css" />
-    <title>Home Added Successfully</title>
-  </head>
-  <body
-    class="bg-gray-50 min-h-screen flex flex-col items-center justify-center font-sans"
-  >
+  <%- include('partials/head'); %>
+  <body class="bg-gray-50 min-h-screen font-sans flex flex-col">
     <!-- Header -->
-    <header
-      class="w-full bg-gradient-to-r from-red-500 to-pink-400 text-white py-5 shadow-md text-center"
-    >
-      <h1 class="text-3xl font-bold tracking-wide">
+    <%- include('partials/header'); %>
+
+    <!-- Heading -->
+    <section class="text-center mt-10">
+      <h1 class="text-3xl font-bold tracking-wide text-gray-800">
         Registered Successfully 🎉
       </h1>
-    </header>
+    </section>
 
     <!-- Main content -->
-    <main class="flex flex-col items-center justify-center flex-grow mt-10">
+    <main class="flex flex-col items-center justify-center flex-grow mt-6">
       <div
         class="bg-white rounded-2xl shadow-lg p-8 text-center w-80 transition-transform hover:scale-105 hover:shadow-xl"
       >
@@ -36,7 +30,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="text-gray-500 text-sm mt-10 mb-4">
+    <footer class="text-gray-500 text-sm mt-10 mb-4 text-center">
       © 2025 Airbnb Clone | Thank you for hosting with us ❤️
     </footer>
   </body>

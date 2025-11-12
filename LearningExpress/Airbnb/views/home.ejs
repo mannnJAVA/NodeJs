@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('partials/head'); %>
+  <body class="bg-gray-50 min-h-screen font-sans">
+    <!-- Header -->
+    <%- include('partials/header'); %>
+    <!-- Heading below -->
+    <section class="text-center mt-12">
+      <h1 class="text-4xl tracking-wide text-gray-800">
+        Here are our registered homes
+      </h1>
+    </section>
+
+    <!-- Homes list -->
+    <main class="mt-8 flex justify-center">
+      <div class="bg-white shadow-lg rounded-xl p-6 w-full max-w-4xl">
+        <ul class="space-y-4">
+          <% registeredHomes.forEach(home => { %>
+          <li
+            class="bg-gradient-to-r from-gray-50 to-gray-100 shadow-md rounded-lg p-4 hover:shadow-xl hover:scale-105 transition-all duration-300 ease-in-out border border-gray-200"
+          >
+            <div class="text-gray-800 text-xl font-semibold">
+              <%= home.houseName %>
+            </div>
+          </li>
+          <% }) %>
+        </ul>
+      </div>
+    </main>
+  </body>
+</html>

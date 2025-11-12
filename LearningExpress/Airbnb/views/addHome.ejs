@@ -1,24 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/output.css" />
-    <title>Add Home to Airbnb</title>
-  </head>
-  <body
-    class="bg-gray-50 min-h-screen flex flex-col items-center justify-center font-sans"
-  >
+  <%- include('partials/head'); %>
+  <body class="bg-gray-50 min-h-screen font-sans">
     <!-- Header -->
-    <header
-      class="w-full bg-gradient-to-r from-red-500 to-pink-400 text-white py-5 shadow-md text-center"
-    >
-      <h1 class="text-3xl font-bold tracking-wide">Register Your Home 🏡</h1>
-    </header>
+    <%- include('partials/header'); %>
+
+    <!-- Heading (outside header bar) -->
+    <section class="text-center mt-10">
+      <h1 class="text-3xl font-bold tracking-wide text-gray-800">
+        Register Your Home 🏡
+      </h1>
+    </section>
 
     <!-- Main Section -->
     <main
-      class="flex flex-col items-center justify-center flex-grow mt-10 w-full"
+      class="flex flex-col items-center justify-center flex-grow mt-6 w-full"
     >
       <form
         action="/host/add-home"
@@ -48,7 +44,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="text-gray-500 text-sm mt-10 mb-4">
+    <footer class="text-gray-500 text-sm mt-10 mb-4 text-center">
       © 2025 Airbnb Clone | Host your space with confidence ❤️
     </footer>
   </body>
