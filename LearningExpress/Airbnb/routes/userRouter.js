@@ -1,17 +1,8 @@
-const path = require("path");
 const express = require("express");
 const userRouter = express.Router();
-const rootDir = require("../utils/pathUtils");
 
-const { registeredHomes } = require("./hostRouter");
-
+const homesController = require("../controllers/homes");
 // List page: render using key `homes` (template expects `homes`)
-userRouter.get("/", (req, res, next) => {
-  console.log("registeredHomes ->", registeredHomes);
-  res.render("home", {
-    homes: registeredHomes,
-    pageTitle: "Airbnb Home",
-  });
-});
+userRouter.get("/", homesController.getHomes);
 
 module.exports = userRouter;

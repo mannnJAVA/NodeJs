@@ -4,7 +4,7 @@ const express = require("express"); // external module
 const userRouter = require("./routes/userRouter"); //Local module
 const { hostRouter } = require("./routes/hostRouter");
 const rootDir = require("./utils/pathUtils");
-
+const errorController = require("./controllers/error");
 const app = express();
 app.set("view engine", "ejs");
 app.set("views", "views");
@@ -23,9 +23,7 @@ app.use("/host", hostRouter);
 app.get("/", (req, res) => {
   res.redirect("/user");
 });
-app.use((req, res, next) => {
-  res.status(404).render("404", { pageTitle: "Page Not Found" });
-});
+app.use(errorController.get404);
 
 const PORT = 7000;
 
