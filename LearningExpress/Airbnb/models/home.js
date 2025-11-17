@@ -1,4 +1,5 @@
 const registeredHomes = [];
+
 module.exports = class Home {
   constructor(id, title, location, price, image) {
     this.id = id;
@@ -6,5 +7,13 @@ module.exports = class Home {
     this.location = location;
     this.price = price;
     this.image = image;
+  }
+
+  save() {
+    registeredHomes.push(this);
+  }
+
+  static fetchAll() {
+    return registeredHomes;
   }
 };

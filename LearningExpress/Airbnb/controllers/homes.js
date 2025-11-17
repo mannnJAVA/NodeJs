@@ -1,30 +1,29 @@
+const Home = require("../models/home");
+
 exports.getAddHome = (req, res, next) => {
-  res.render("addHome", { pageTitle: "Add New Home", currentPage: "addHome" });
+  res.render("addHome", {
+    pageTitle: "Add New Home",
+    currentPage: "addHome",
+  });
 };
 
-const registeredHomes = [];
-
 exports.postAddHome = (req, res, next) => {
-  console.log("home registration successful for: ", req.body);
+  const { id, title, location, price, image } = req.body;
 
-  // Normalize incoming data to the shape the templates expect
-  const newHome = {
-    id: Date.now().toString(),
-    title: req.body.title || req.body.name || "Untitled Home",
-    location: req.body.location || req.body.city || "Unknown location",
-    price: req.body.price || req.body.cost || null,
-    image: req.body.image || "/images/home.jpg",
-  };
+  const home = new Home(id, title, location, price, image);
+  home.save();
 
-  registeredHomes.push(newHome);
-
-  res.redirect("/user");
+  // Redirect to user homepage after saving
+  return res.redirect("/user");
 };
 
 exports.getHomes = (req, res, next) => {
-  console.log("registeredHomes ->", registeredHomes);
+  const registeredHomes = Home.fetchAll();
+  console.log("Registered Homes ->", registeredHomes);
+
   res.render("home", {
+    pageTitle: "All Homes",
+    currentPage: "home",
     homes: registeredHomes,
-    pageTitle: "Airbnb Home",
   });
 };
