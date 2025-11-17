@@ -18,12 +18,13 @@ exports.postAddHome = (req, res, next) => {
 };
 
 exports.getHomes = (req, res, next) => {
-  const registeredHomes = Home.fetchAll();
-  console.log("Registered Homes ->", registeredHomes);
+  const registeredHomes = Home.fetchAll((registeredHomes) => {
+    console.log("Registered Homes ->", registeredHomes);
 
-  res.render("home", {
-    pageTitle: "All Homes",
-    currentPage: "home",
-    homes: registeredHomes,
+    res.render("home", {
+      pageTitle: "All Homes",
+      currentPage: "home",
+      homes: registeredHomes,
+    });
   });
 };

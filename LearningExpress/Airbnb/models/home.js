@@ -4,7 +4,7 @@ const path = require("path");
 
 const rootDir = require("../utils/pathUtils");
 
-const registeredHomes = [];
+//let registeredHomes = [];
 
 module.exports = class Home {
   constructor(id, title, location, price, image) {
@@ -16,14 +16,19 @@ module.exports = class Home {
   }
 
   save() {
-    registeredHomes.push(this);
-    const homeDataPath = path.join(rootDir, "data", "homes.json");
-    fs.writeFile(homeDataPath, JSON.stringify(registeredHomes), (error) => {
-      console.log("Error writing homes data:", error);
+    Home.fetchAll((registeredHomes) => {
+      registeredHomes.push(this);
+      const homeDataPath = path.join(rootDir, "data", "homes.json");
+      fs.writeFile(homeDataPath, JSON.stringify(registeredHomes), (error) => {
+        console.log("Error writing homes data:", error);
+      });
     });
   }
 
-  static fetchAll() {
-    return registeredHomes;
+  static fetchAll(callback) {
+    const homeDataPath = path.join(rootDir, "data", "homes.json");
+    fs.readFile(homeDataPath, (err, data) => {
+      callback(!err ? JSON.parse(data) : []);
+    });
   }
 };
