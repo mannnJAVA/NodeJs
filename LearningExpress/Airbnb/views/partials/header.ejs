@@ -2,7 +2,22 @@
   class="w-full bg-gradient-to-r from-red-500 to-pink-400 text-white py-10 shadow-md"
 >
   <nav class="max-w-6xl mx-auto px-10 flex items-center space-x-16 text-lg">
+    <!-- Matches storeRouter.get("/") -->
     <a href="/" class="hover:text-gray-200">Home</a>
+
+    <!-- Matches storeRouter.get("/homes") -->
+    <a href="/homes" class="hover:text-gray-200">List</a>
+
+    <!-- Matches storeRouter.get("/bookings") — removed trailing space -->
+    <a href="/bookings" class="hover:text-gray-200">Bookings</a>
+    <a href="/favourites" class="hover:text-gray-200">Favourites</a>
+
+    <a href="/host/host-home-list" class="hover:text-gray-200">Host Homes</a>
+
+    <!-- Matches storeRouter.get("/reserve") -->
+    <a href="/reserve" class="hover:text-gray-200">Reserved Homes</a>
+
+    <!-- Host route is correct -->
     <a href="/host/add-home" class="hover:text-gray-200">Add Home</a>
   </nav>
 </header>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/head') %>
+
+  <body class="bg-gray-100">
+    <!-- Navbar -->
+    <header class="bg-gray-900 text-white">
+      <div
+        class="max-w-6xl mx-auto flex justify-between items-center py-4 px-4"
+      >
+        <h1 class="text-2xl font-bold">Hostify</h1>
+        <nav>
+          <ul class="flex gap-6 text-lg">
+            <li><a href="/store/index" class="hover:text-gray-300">Home</a></li>
+            <li>
+              <a href="/store/reserve" class="hover:text-gray-300">Reserve</a>
+            </li>
+            <li><a href="/contact" class="hover:text-gray-300">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Reservation Section -->
+    <section class="py-12">
+      <div class="max-w-3xl mx-auto bg-white p-8 shadow-md rounded-lg">
+        <h2 class="text-3xl font-bold mb-3 text-center">Reserve Your Home</h2>
+        <p class="text-gray-600 mb-8 text-center">
+          Fill the form below to book this place.
+        </p>
+
+        <form action="/reserve" method="POST" class="space-y-6">
+          <div>
+            <label class="block text-gray-700 mb-1 font-medium"
+              >Full Name</label
+            >
+            <input
+              type="text"
+              name="name"
+              required
+              class="w-full border border-gray-300 px-4 py-2 rounded-lg focus:ring focus:ring-gray-500 outline-none"
+            />
+          </div>
+
+          <div>
+            <label class="block text-gray-700 mb-1 font-medium"
+              >Email Address</label
+            >
+            <input
+              type="email"
+              name="email"
+              required
+              class="w-full border border-gray-300 px-4 py-2 rounded-lg focus:ring focus:ring-gray-500 outline-none"
+            />
+          </div>
+
+          <div>
+            <label class="block text-gray-700 mb-1 font-medium"
+              >Check-In Date</label
+            >
+            <input
+              type="date"
+              name="checkin"
+              required
+              class="w-full border border-gray-300 px-4 py-2 rounded-lg focus:ring focus:ring-gray-500 outline-none"
+            />
+          </div>
+
+          <div>
+            <label class="block text-gray-700 mb-1 font-medium"
+              >Check-Out Date</label
+            >
+            <input
+              type="date"
+              name="checkout"
+              required
+              class="w-full border border-gray-300 px-4 py-2 rounded-lg focus:ring focus:ring-gray-500 outline-none"
+            />
+          </div>
+
+          <div>
+            <label class="block text-gray-700 mb-1 font-medium">Guests</label>
+            <select
+              name="guests"
+              required
+              class="w-full border border-gray-300 px-4 py-2 rounded-lg focus:ring focus:ring-gray-500 outline-none"
+            >
+              <option value="">Select no. of guests</option>
+              <option value="1">1 Guest</option>
+              <option value="2">2 Guests</option>
+              <option value="3">3 Guests</option>
+              <option value="4">4 Guests</option>
+            </select>
+          </div>
+
+          <button
+            type="submit"
+            class="w-full bg-gray-900 text-white py-3 rounded-lg text-lg font-semibold hover:bg-gray-700 transition"
+          >
+            Reserve This Home
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <footer class="bg-gray-900 text-white text-center py-4 mt-12">
+      © 2025 Hostify. All Rights Reserved.
+    </footer>
+  </body>
+</html>
