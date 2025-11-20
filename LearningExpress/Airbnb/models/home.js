@@ -2,6 +2,7 @@ const fs = require("fs");
 const path = require("path");
 
 const rootDir = require("../utils/pathUtils");
+const homeDataPath = path.join(rootDir, "data", "homes.json");
 
 module.exports = class Home {
   constructor(id, title, location, price, rating, image) {
@@ -23,18 +24,25 @@ module.exports = class Home {
 
       registeredHomes.push(this);
 
-      const homeDataPath = path.join(rootDir, "data", "homes.json");
-
       fs.writeFile(homeDataPath, JSON.stringify(registeredHomes), (error) => {
-        console.log("Error writing homes data:", error);
+        if (error) console.log("Error writing homes data:", error);
       });
     });
   }
 
   static fetchAll(callback) {
-    const homeDataPath = path.join(rootDir, "data", "homes.json");
     fs.readFile(homeDataPath, (err, data) => {
       callback(!err ? JSON.parse(data) : []);
+    });
+  }
+
+  // ✅ FIXED — PROPER findById function
+  static findById(homeId, callback) {
+    Home.fetchAll((homes) => {
+      const homeFound = homes.find(
+        (home) => home.id.toString() === homeId.toString()
+      );
+      callback(homeFound);
     });
   }
 };

@@ -1,55 +1,71 @@
 const Home = require("../models/home");
 
-exports.getIndex = (req, res, next) => {
-  const registeredHomes = Home.fetchAll((registeredHomes) => {
+// =====================
+// Get Home Page (Index)
+// =====================
+exports.getIndex = (req, res) => {
+  Home.fetchAll((homes) => {
     res.render("store/index", {
-      pageTitle: "airbnb Home",
-      currentPage: "index",
-      homes: registeredHomes,
+      homes: homes,
+      pageTitle: "Home | Airbnb Clone",
     });
   });
 };
 
-exports.getHomes = (req, res, next) => {
-  const registeredHomes = Home.fetchAll((registeredHomes) => {
-    res.render("store/home-list", {
-      pageTitle: "All Homes",
-      currentPage: "home",
-      homes: registeredHomes,
+// =====================
+// Get All Homes
+// =====================
+exports.getHomes = (req, res) => {
+  Home.fetchAll((homes) => {
+    res.render("store/homes-list", {
+      homes: homes,
+      pageTitle: "Homes",
     });
   });
 };
 
-exports.getBookings = (req, res, next) => {
-  Home.fetchAll((registeredHomes) => {
-    res.render("store/bookings", {
-      pageTitle: "My Bookings",
-      currentPage: "bookings",
+// =====================
+// Get Bookings
+// =====================
+exports.getBookings = (req, res) => {
+  res.render("store/bookings", {
+    pageTitle: "Your Bookings",
+  });
+};
+
+// =====================
+// Get Favourites
+// =====================
+exports.getFavouriteList = (req, res) => {
+  res.render("store/favourites", {
+    pageTitle: "Your Favourites",
+  });
+};
+
+// =====================
+// ⭐ Get Home Details Page
+// =====================
+exports.getHomeDetails = (req, res) => {
+  const homeId = req.params.homeId;
+
+  Home.findById(homeId, (home) => {
+    if (!home) {
+      return res.status(404).render("404", { pageTitle: "Home Not Found" });
+    }
+
+    // ⭐ IMPORTANT: Pass `home` to the EJS file
+    res.render("store/home-details", {
+      home: home,
+      pageTitle: home.title,
     });
   });
 };
 
-exports.getFavouriteList = (req, res, next) => {
-  Home.fetchAll((registeredHomes) => {
-    res.render("store/favourite-list", {
-      pageTitle: "My Favourites",
-      currentPage: "favourites",
-    });
-  });
-};
-
+// =====================
+// Reserve Page
+// =====================
 exports.getReserve = (req, res) => {
   res.render("store/reserve", {
-    pageTitle: "Reserve Home",
-    currentPage: "reserve",
-  });
-};
-
-exports.getHomeDetails = (req, res, next) => {
-  const homeId = req.params.homeId;
-  console.log("At home details page", homeId);
-  res.render("store/home-details", {
-    pageTitle: "Home Details",
-    currentPage: "home",
+    pageTitle: "Reserve Now",
   });
 };
