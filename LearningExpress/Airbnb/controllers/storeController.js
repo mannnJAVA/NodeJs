@@ -46,13 +46,10 @@ exports.getReserve = (req, res) => {
 };
 
 exports.getHomeDetails = (req, res, next) => {
-  const registeredHomes = Home.fetchAll((registeredHomes) => {
-    console.log("Registered Homes ->", registeredHomes);
-
-    res.render("store/home-list", {
-      pageTitle: "All Homes",
-      currentPage: "home",
-      homes: registeredHomes,
-    });
+  const homeId = req.params.homeId;
+  console.log("At home details page", homeId);
+  res.render("store/home-details", {
+    pageTitle: "Home Details",
+    currentPage: "home",
   });
 };
