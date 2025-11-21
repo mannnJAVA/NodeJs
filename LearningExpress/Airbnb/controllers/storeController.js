@@ -37,7 +37,7 @@ exports.getBookings = (req, res) => {
 // Get Favourites
 // =====================
 exports.getFavouriteList = (req, res) => {
-  res.render("store/favourites", {
+  res.render("store/favourite-list", {
     pageTitle: "Your Favourites",
   });
 };
@@ -68,4 +68,9 @@ exports.getReserve = (req, res) => {
   res.render("store/reserve", {
     pageTitle: "Reserve Now",
   });
+};
+
+exports.postAddToFavourites = (req, res) => {
+  console.log("Added to favourites", req.body);
+  res.redirect("/fovourites");
 };

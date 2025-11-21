@@ -1,15 +1,16 @@
 const express = require("express");
 const storeRouter = express.Router();
 
-const homesController = require("../controllers/storeController.js");
+const storeController = require("../controllers/storeController.js");
 
 // Existing routes
-storeRouter.get("/", homesController.getIndex);
-storeRouter.get("/homes", homesController.getHomes);
-storeRouter.get("/bookings", homesController.getBookings);
-storeRouter.get("/favourites", homesController.getFavouriteList);
-storeRouter.get("/homes/:homeId", homesController.getHomeDetails);
+storeRouter.get("/", storeController.getIndex);
+storeRouter.get("/homes", storeController.getHomes);
+storeRouter.get("/bookings", storeController.getBookings);
+storeRouter.get("/favourites", storeController.getFavouriteList);
+storeRouter.get("/homes/:homeId", storeController.getHomeDetails);
 // 👉 Add Reserve Page Route
-storeRouter.get("/reserve", homesController.getReserve);
+storeRouter.get("/reserve", storeController.getReserve);
+storeRouter.post("/favourites", storeController.postAddToFavourites);
 
 module.exports = storeRouter;
