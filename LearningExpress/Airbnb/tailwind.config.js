@@ -7,7 +7,6 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   safelist: [
-    // core card and control utilities we use in templates
     "bg-white",
     "shadow-sm",
     "rounded-lg",
@@ -19,6 +18,10 @@ module.exports = {
     "text-gray-800",
     "bg-slate-800",
     "hover:bg-slate-700",
+
+    // ⭐ ADD THESE FOR YOUR BLUE BUTTON
+    "bg-blue-500",
+    "hover:bg-blue-600",
   ],
   theme: {
     extend: {},
